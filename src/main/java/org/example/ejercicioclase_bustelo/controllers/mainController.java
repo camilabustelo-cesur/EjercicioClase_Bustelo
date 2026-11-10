@@ -2,6 +2,7 @@ package org.example.ejercicioclase_bustelo.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import org.example.ejercicioclase_bustelo.SceneNavigator;
@@ -9,7 +10,7 @@ import org.example.ejercicioclase_bustelo.SceneNavigator;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class mainController {
+public class mainController implements Initializable {
 
     @FXML
     private TableColumn columnFecha;
@@ -31,5 +32,10 @@ public class mainController {
     public void onNuevoRegistroClick(ActionEvent actionEvent) {
         SceneNavigator.navigateTo("createView.fxml", "Create");
 
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        columnNombre.setCellValueFactory(row);
     }
 }

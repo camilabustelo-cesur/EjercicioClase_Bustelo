@@ -5,9 +5,9 @@ import lombok.Data;
 
     @Data
     public class Registro {
+        private Long id;
         private String nombre;
-        private String descripcion;
-        private String fecha;
-        private String estado;
+        private String categoria;
+        private Boolean disponible;
     }
 

@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DAO<T> {
-    Optional<T> findByNombre(String nombre);
+    Optional<T> findById(Long id);
     List<T> findAll();
     T save(T obj);
     void update(T entity);
-    void deleteByNombre(String nombre);
+    void deleteById(Long id);
 }
