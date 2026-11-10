@@ -33,8 +33,6 @@ public class createController implements Initializable {
         pickEstado.setItems(estados);
         estados.add("Disponible");
         estados.add("No disponible");
-
-        pickEstado.getItems().addAll(estados);
         pickEstado.getSelectionModel().selectFirst();
 
     }

@@ -9,7 +9,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         SceneNavigator.setStage(stage);
-        SceneNavigator.navigateTo("loginView.fxml","Login");
+        SceneNavigator.navigateTo("LoginView.fxml","Login");
         stage.show();
     }
 }

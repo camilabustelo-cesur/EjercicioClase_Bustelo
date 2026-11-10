@@ -8,5 +8,6 @@ module org.example.ejercicioclase_bustelo {
 
 
     opens org.example.ejercicioclase_bustelo to javafx.fxml;
+    opens org.example.ejercicioclase_bustelo.controllers to javafx.fxml;
     exports org.example.ejercicioclase_bustelo;
 }
