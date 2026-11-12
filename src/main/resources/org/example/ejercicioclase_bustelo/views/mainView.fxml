@@ -19,11 +19,11 @@
             <Button fx:id="btnNuevo" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onNuevoRegistroClick" text="Nuevo" />
          </children>
       </FlowPane>
-      <TableView prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tabla" prefHeight="200.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="columnId" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="columnNombre" prefWidth="75.0" text="Nombre" />
-            <TableColumn fx:id="columnFecha" prefWidth="75.0" text="Fecha" />
+            <TableColumn fx:id="columnCategoria" prefWidth="75.0" text="Categoría" />
             <TableColumn fx:id="columnEstado" prefWidth="75.0" text="Estado" />
         </columns>
          <columnResizePolicy>

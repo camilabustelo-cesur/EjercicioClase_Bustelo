@@ -17,23 +17,26 @@ public class createController implements Initializable {
     @FXML
     private Button btnGuardar;
     @FXML
-    private TextField tfNombre;
-    @FXML
-    private TextArea taDescripcion;
-    @FXML
     private Button btnCancelar;
     @FXML
-    private DatePicker dateFecha;
+    private Spinner campoId;
     @FXML
-    private ChoiceBox<String> pickEstado;
+    private CheckBox campoDisponible;
+    @FXML
+    private ChoiceBox campoCategoria;
+    @FXML
+    private TextField campoNombre;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<String> estados = FXCollections.observableArrayList();
-        pickEstado.setItems(estados);
-        estados.add("Disponible");
-        estados.add("No disponible");
-        pickEstado.getSelectionModel().selectFirst();
+        campoId.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 1000, 0,1));
+
+        ObservableList<String> categoria = FXCollections.observableArrayList();
+        categoria.add("Computadora");
+        categoria.add("Teléfono");
+        categoria.add("Tablet");
+        campoCategoria.setItems(categoria);
+        campoCategoria.getSelectionModel().selectFirst();
 
     }
 
@@ -45,27 +48,29 @@ public class createController implements Initializable {
 
     @FXML
     public void onGuardarClick(ActionEvent actionEvent) {
-        if (tfNombre.getText().isEmpty() || dateFecha.getValue() == null || pickEstado.getValue() == null) {
+        if (campoNombre.getText().isEmpty() || campoCategoria.getValue() == null) {
             return;
         }
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Guardar");
         alert.setHeaderText("Datos guardados correctamente");
 
-        String nombre = tfNombre.getText();
-        String descripcion = taDescripcion.getText();
-        String fecha = dateFecha.getValue().toString();
-        String estado = pickEstado.getValue();
+        String nombre = campoNombre.getText();
+        String categoria = campoCategoria.getValue().toString();
+        String estado = campoDisponible.isSelected() ? "Disponible" : "No disponible";
 
-        alert.setContentText(nombre + " " + descripcion + " " + fecha + " " + estado);
+
+        alert.setContentText(nombre + " " + categoria + " " + estado);
         alert.showAndWait();
-        tfNombre.clear();
+        campoNombre.clear();
 
         Registro registro = new Registro();
         registro.setNombre(nombre);
-        registro.setDescripcion(descripcion);
-        registro.setFecha(fecha);
-        registro.setEstado(estado);
+        registro.setCategoria(categoria);
+        registro.setId(Long.valueOf(campoId.getValue().toString()));
+        registro.setDisponible(campoDisponible.isSelected());
+
+        SceneNavigator.navigateTo("mainView.fxml", "MainView");
 
     }
 

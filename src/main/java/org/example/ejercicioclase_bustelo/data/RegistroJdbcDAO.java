@@ -59,7 +59,7 @@ public class RegistroJdbcDAO implements DAO<Registro> {
 
     @Override
     public Registro save(Registro obj) {
-        String sql = "INSERT INTO registros(nombre,categoria,disponible) VALUES(?,?,?)";
+        String sql = "INSERT INTO registros (nombre,categoria,disponible) VALUES(?,?,?)";
 
         try(Connection conn = ds.getConnection();
         PreparedStatement pst = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)){
@@ -81,11 +81,30 @@ public class RegistroJdbcDAO implements DAO<Registro> {
 
     @Override
     public void update(Registro entity) {
+        String sql = "UPDATE registros SET nombre = ?, categoria = ?, disponible = ? WHERE id = ?";
 
+        try (Connection conn = ds.getConnection();
+             PreparedStatement pst = conn.prepareStatement(sql)) {
+            pst.setString(1, entity.getNombre());
+            pst.setString(2, entity.getCategoria());
+            pst.setBoolean(3, entity.getDisponible());
+            pst.setLong(4, entity.getId());
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
     public void deleteById(Long id) {
+        String sql = "DELETE FROM registros WHERE id = ?";
 
+        try (Connection conn = ds.getConnection();
+             PreparedStatement pst = conn.prepareStatement(sql)) {
+            pst.setLong(1, id);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }

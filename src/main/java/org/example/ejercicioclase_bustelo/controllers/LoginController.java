@@ -1,6 +1,7 @@
 package org.example.ejercicioclase_bustelo.controllers;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import org.example.ejercicioclase_bustelo.SceneNavigator;
